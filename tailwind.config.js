@@ -4,19 +4,10 @@ module.exports = {
   theme: {
     screens: {
       sm: "540px",
-      // => @media (min-width: 576px) { ... }
-
       md: "720px",
-      // => @media (min-width: 768px) { ... }
-
       lg: "960px",
-      // => @media (min-width: 992px) { ... }
-
       xl: "1140px",
-      // => @media (min-width: 1200px) { ... }
-
       "2xl": "1320px",
-      // => @media (min-width: 1400px) { ... }
     },
     container: {
       center: true,
@@ -57,10 +48,28 @@ module.exports = {
         1: "0px 1px 3px 0px rgba(166, 175, 195, 0.40)",
         2: "0px 5px 12px 0px rgba(0, 0, 0, 0.10)",
       },
+
+      /** ✅ Add animations */
+      animation: {
+        fadeInUp: "fadeInUp 1s ease-out",
+        slideInLeft: "slideInLeft 1s ease-out",
+      },
+
+      /** ✅ Define keyframes for animations */
+      keyframes: {
+        fadeInUp: {
+          "0%": { opacity: 0, transform: "translateY(20px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        slideInLeft: {
+          "0%": { opacity: 0, transform: "translateX(-50px)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+      },
     },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
