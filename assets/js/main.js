@@ -1,50 +1,31 @@
 (function () {
   "use strict";
 
-  // ======= Sticky
-  window.onscroll = function () {
+  // Ensure the logo is always set to "image2vector.svg" on page load
+  document.addEventListener("DOMContentLoaded", function () {
     const ud_header = document.querySelector(".ud-header");
-    const sticky = ud_header.offsetTop;
-    const logo = document.querySelectorAll(".header-logo");
+    const logo = document.querySelector(".header-logo"); // Get the logo element
 
-    if (window.pageYOffset > sticky) {
-      ud_header.classList.add("sticky");
-    } else {
-      ud_header.classList.remove("sticky");
+    if (logo) {
+      logo.src = "assets/images/logo/image2vector.svg"; // ✅ Set the correct logo
     }
 
-    if(logo.length) {
-      // === logo change
-      if (ud_header.classList.contains("sticky")) {
-        document.querySelector(".header-logo").src =
-          "assets/images/logo/logo.svg"
+    // ✅ Fix the logo issue on scroll
+    /*
+    window.onscroll = function () {
+      if (window.pageYOffset > ud_header.offsetTop) {
+        ud_header.classList.add("sticky");
       } else {
-        document.querySelector(".header-logo").src =
-          "assets/images/logo/logo-white.svg"
+        ud_header.classList.remove("sticky");
       }
-    }
 
-    if (document.documentElement.classList.contains("dark")) {
-      if(logo.length) {
-        // === logo change
-        if (ud_header.classList.contains("sticky")) {
-          document.querySelector(".header-logo").src =
-            "assets/images/logo/logo-white.svg"
-        } 
+      // ✅ Ensure "image2vector.svg" is always used (even after scrolling)
+      if (logo) {
+        logo.src = "assets/images/logo/image2vector.svg"; // ✅ Force the correct logo
       }
-    }
-
-    // show or hide the back-top-top button
-    const backToTop = document.querySelector(".back-to-top");
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      backToTop.style.display = "flex";
-    } else {
-      backToTop.style.display = "none";
-    }
-  };
+    };
+  });
+  */
 
   // ===== responsive navbar
   let navbarToggler = document.querySelector("#navbarToggler");
@@ -55,7 +36,7 @@
     navbarCollapse.classList.toggle("hidden");
   });
 
-  //===== close navbar-collapse when a  clicked
+  //===== close navbar-collapse when clicked
   document
     .querySelectorAll("#navbarCollapse ul li:not(.submenu-item) a")
     .forEach((e) =>
@@ -118,41 +99,43 @@
     scrollTo(document.documentElement);
   };
 
-    /* ========  themeSwitcher start ========= */
+  /* ========  themeSwitcher start ========= */
 
   // themeSwitcher
-  const themeSwitcher = document.getElementById('themeSwitcher');
+  const themeSwitcher = document.getElementById("themeSwitcher");
 
   // Theme Vars
-  const userTheme = localStorage.getItem('theme');
-  const systemTheme = window.matchMedia('(prefers-color0scheme: dark)').matches;
+  const userTheme = localStorage.getItem("theme");
+  const systemTheme = window.matchMedia("(prefers-color0scheme: dark)").matches;
 
   // Initial Theme Check
   const themeCheck = () => {
-    if (userTheme === 'dark' || (!userTheme && systemTheme)) {
-      document.documentElement.classList.add('dark');
+    if (userTheme === "dark" || (!userTheme && systemTheme)) {
+      document.documentElement.classList.add("dark");
       return;
     }
   };
 
   // Manual Theme Switch
   const themeSwitch = () => {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
       return;
     }
 
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
   };
 
   // call theme switch on clicking buttons
-  themeSwitcher.addEventListener('click', () => {
+  themeSwitcher.addEventListener("click", () => {
     themeSwitch();
   });
 
   // invoke theme check on initial load
   themeCheck();
   /* ========  themeSwitcher End ========= */
+});
 })();
+
