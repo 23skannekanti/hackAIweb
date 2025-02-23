@@ -1,7 +1,7 @@
 import Foundation
 
 class ChatGPTService {
-    private let openAiApiKey = "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" // 🔹 Replace with a valid OpenAI API key
+    private let openAiApiKey = "" // 🔹 Replace with a valid OpenAI API key
     private let apiUrl = "https://api.openai.com/v1/chat/completions"
 
     // MARK: - Send message to ChatGPT API
